@@ -1,0 +1,29 @@
+{
+  "name": "imc-hiring-test",
+  "version": "1.0.0",
+  "scripts": {
+    "build:glob": "webpack --config=webpack-glob.config.js",
+    "build:react": "webpack --config=webpack-react.config.js"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "@types/react": "^16.6.3",
+    "axios": "^0.18.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-router-dom": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.0.4",
+    "expose-loader": "^0.7.5",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}

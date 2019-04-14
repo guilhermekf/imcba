@@ -1,0 +1,105 @@
+﻿@using IMCBA_Hiring_Test.Models
+@using IMCBA_Hiring_Test.Helper
+
+@model ContactUsModel
+
+@{
+    ViewBag.Title = "Contact Us";
+}
+
+<div id="hideMe" class="row hidden" >
+    <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+        <div class="page-header">
+            <h1>@ViewBag.Title</h1>
+        </div>
+        @using (Html.BeginForm("ContactUs", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "contactUsForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div id="smartwizard">
+                <ul>
+                    <li><a href="#Name">Name<br /></a></li>
+                    <li><a href="#Location">Location<br /></a></li>
+                    <li><a href="#Contact">Contact<br /></a></li>
+                </ul>
+
+                <div>
+                    <div id="Name" class="">
+                        @using (Html.BeginDivContainer(x => x.FirstName, new { @class = "form-group" }))
+                        {
+                            @Html.LabelFor(x => x.FirstName, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.FirstName, true, htmlAttributes: new { @class = "form-control input-sm", autofocus = "true", @maxlength = ContactUsModel.FirstNameMaxLength })
+                            @Html.ValidationMessageFor(x => x.FirstName, null, htmlAttributes: new { @class = "help-block" })
+                        }
+                        @using (Html.BeginDivContainer(x => x.LastName, new { @class = "form-group" }))
+                        {
+                            @Html.LabelFor(x => x.LastName, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.LastName, true, htmlAttributes: new { @class = "form-control input-sm", @maxlength = ContactUsModel.LastNameMaxLength })
+                            @Html.ValidationMessageFor(x => x.LastName, null, htmlAttributes: new { @class = "help-block" })
+                        }
+                    </div>
+                    <div id="Location" class="">
+                        @using (Html.BeginDivContainer(x => x.StreetAddress, new { @class = "form-group" }))
+                        {
+                            @Html.LabelFor(x => x.StreetAddress, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.StreetAddress, true, htmlAttributes: new { @class = "form-control input-sm", @maxlength = ContactUsModel.StreetAddressMaxLength })
+                            @Html.ValidationMessageFor(x => x.StreetAddress, null, htmlAttributes: new { @class = "help-block" })
+                        }
+                        @using (Html.BeginDivContainer(x => x.UnitApt, new { @class = "form-group" }))
+                        {
+                            @Html.LabelFor(x => x.UnitApt, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.UnitApt, true, htmlAttributes: new { @class = "form-control input-sm", @maxlength = ContactUsModel.UnitAptMaxLength })
+                            @Html.ValidationMessageFor(x => x.UnitApt, null, htmlAttributes: new { @class = "help-block" })
+                        }
+                        @using (Html.BeginDivContainer(x => x.Province, new { @class = "form-group" }))
+                        {
+                            @Html.LabelFor(x => x.Province, new { @class = "control-label" })
+                            @Html.DropDownListFor(x => x.Province, true, new SelectList(Model.ProvinceList, "Value", "Text", 0), "Select...", htmlAttributes: new { @class = "form-control select2 input-sm" })
+                            @Html.ValidationMessageFor(x => x.Province, null, htmlAttributes: new { @class = "help-block" })
+                        }
+                        @using (Html.BeginDivContainer(x => x.City, new { @class = "form-group" }))
+                        {
+                            @Html.LabelFor(x => x.City, new { @class = "control-label" })
+                            @Html.DropDownListFor(x => x.City, true, new SelectList(Model.CityList), "Select...", htmlAttributes: new { @class = "form-control select2 input-sm" })
+                            @Html.ValidationMessageFor(x => x.City, null, htmlAttributes: new { @class = "help-block" })
+                        }
+                    </div>
+                    <div id="Contact" class="">
+                        @using (Html.BeginDivContainer(x => x.Email, new { @class = "form-group" }))
+                        {
+                            @Html.LabelFor(x => x.Email, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.Email, true, htmlAttributes: new { @class = "form-control input-sm", @maxlength = ContactUsModel.EmailMaxLength })
+                            @Html.ValidationMessageFor(x => x.Email, null, htmlAttributes: new { @class = "help-block" })
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group btn-group-justified" role="group" >
+                <div class="btn-group" role="group">
+                    <button id="prev-btn" type="button" class="btn btn-default disabled">Previous</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button id="next-btn" type="button" class="btn btn-default fix-border">Next</button>
+                </div>
+                <div class="btn-group hidden" role="group">
+                    <button id="submit-btn" type="button" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/contactUs")
+}
+
+@section Css
+{
+    @Styles.Render("~/Content/contactUs")
+}

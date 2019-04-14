@@ -42593,6 +42593,8 @@ var validateEmailStep = function validateEmailStep(values) {
 
   if (!values.Email) {
     errors.Email = 'Email is required';
+  } else if (!/\S+@\S+\.\S+/.test(values.Email)) {
+    errors.Email = 'Email address is invalid';
   }
 
   return errors;
